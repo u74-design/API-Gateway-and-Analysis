@@ -48,5 +48,30 @@ const GetAnalyticsSummary = async(req,res) => {
     }
 }
 
+const GetAnalyticsHistory = async (req, res) => {
+    try {
+        const { apiId } = req.params;
 
-export {GetAnalyticsSummary};
+        const history = await Analytics.find({
+            apiId,
+            owner: req.user._id
+        })
+        .sort({ createdAt: -1 })
+        .limit(50);
+
+        return res.status(200).json({
+            message: "Analytics history fetched successfully",
+            success: true,
+            history
+        });
+
+    } catch (err) {
+        console.log("Error in fetching analytics history", err);
+
+        return res.status(500).json({
+            message: "Error fetching analytics history",
+            success: false
+        });
+    }
+};
+export {GetAnalyticsSummary, GetAnalyticsHistory};
