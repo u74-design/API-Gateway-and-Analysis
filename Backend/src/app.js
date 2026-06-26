@@ -3,6 +3,7 @@ import cors  from 'cors';
 import authRoutes from './routes/auth.route.js';
 import apiRoutes from "./routes/api.route.js";
 import proxyRoutes from "./routes/proxy.route.js";
+import analyticsRoutes from "./routes/analytics.route.js";
 const app = express();
 
 app.use(cors({
@@ -13,6 +14,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/api/auth',authRoutes);
 app.use('/api/apis/',apiRoutes);
 app.use('/proxy', proxyRoutes);
+app.use("/api/analytics",analyticsRoutes);
 app.get('/',(req,res)=>{
     res.send("API Gateway Running in backend");
 })
