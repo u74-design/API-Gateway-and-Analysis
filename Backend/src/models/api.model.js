@@ -14,12 +14,12 @@ const ApiSchema = new mongoose.Schema(
             trim: true
         },
 
-        rateLimit:{
+        rateLimit: {
             type: Number,
             required: true
         },
 
-         window: {
+        window: {
             type: String,
             default: "1m"
         },
@@ -34,13 +34,20 @@ const ApiSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true
+        },
+
+        apiKey: {
+            type: String,
+            required: true,
+            unique: true
         }
+
     },
     {
-        timestamps : true
+        timestamps: true
     }
 )
 
-const Api = mongoose.model('Api',ApiSchema);
+const Api = mongoose.model('Api', ApiSchema);
 
 export default Api;

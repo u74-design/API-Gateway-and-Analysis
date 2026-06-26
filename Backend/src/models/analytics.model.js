@@ -36,6 +36,11 @@ const AnalyticsSchema = new mongoose.Schema(
         blocked: {
             type: Boolean,
             default: false
+        },
+        source: {
+            type: String,
+            enum: ["api", "cache", "rate_limit"],
+            default: "api"
         }
     },
     {
